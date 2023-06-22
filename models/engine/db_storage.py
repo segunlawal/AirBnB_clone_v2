@@ -11,6 +11,7 @@ from models.place import Place
 from models.state import State
 from models.review import Review
 from models.user import User
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 class DBStorage:
@@ -50,3 +51,22 @@ class DBStorage:
                 objects.update({key: obj})
         return objects
 
+    def new(self, obj):
+        """Add the object to the current database session"""
+        self.__session.add(obj)
+
+    def save(self):
+        """Commit all changes of the current database session"""
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        """Delete from the current database session"""
+        if obj:
+            self.__session.delete(obj)
+
+    def reload(self):
+        """Create all tables in the database"""
+        current_session = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
+        Base.metadata.create_all(self.__engine)
+        self.__session = scoped_session(current_session)
