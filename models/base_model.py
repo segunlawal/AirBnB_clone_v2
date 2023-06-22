@@ -21,12 +21,15 @@ class BaseModel:
             self.updated_at = datetime.now()
 
         else:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
-            self.__dict__.update(kwargs)
+            self.id = str(kwargs.get('id', uuid.uuid4()))
+            self.created_at = kwargs.get('created_at', datetime.now())
+            self.updated_at = kwargs.get('updated_at', datetime.now())
+
+            for key in kwargs:
+                if key in ['created_at', 'updated_at']:
+                    setattr(self, key, datetime.fromisoformat(kwargs[key]))
+                elif key != '__class__':
+                    setattr(self, key, kwargs[key])
 
     def __str__(self):
         """Returns a string representation of the instance"""
