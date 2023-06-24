@@ -12,12 +12,12 @@ from models.state import State
 from models.review import Review
 from models.user import User
 from sqlalchemy.orm import sessionmaker, scoped_session
-        
+
 user = getenv('HBNB_MYSQL_USER')
 passwd = getenv('HBNB_MYSQL_PWD')
 host = getenv('HBNB_MYSQL_HOST')
 db = getenv('HBNB_MYSQL_DB')
-        
+
 theDB = "mysql+mysqldb://{}:{}@{}/{}".format(user, passwd, host, db)
 
 
