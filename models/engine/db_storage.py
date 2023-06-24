@@ -12,6 +12,13 @@ from models.state import State
 from models.review import Review
 from models.user import User
 from sqlalchemy.orm import sessionmaker, scoped_session
+        
+user = getenv('HBNB_MYSQL_USER')
+passwd = getenv('HBNB_MYSQL_PWD')
+host = getenv('HBNB_MYSQL_HOST')
+db = getenv('HBNB_MYSQL_DB')
+        
+theDB = "mysql+mysqldb://{}:{}@{}/{}".format(user, passwd, host, db)
 
 
 class DBStorage:
@@ -21,11 +28,6 @@ class DBStorage:
 
     def __init__(self):
         """Initialization"""
-        user = getenv('HBNB_MYSQL_USER')
-        passwd = getenv('HBNB_MYSQL_PWD')
-        host = getenv('HBNB_MYSQL_HOST')
-        db = getenv('HBNB_MYSQL_DB')
-        theDB = "mysql+mysqldb://{}:{}@{}/{}".format(user, passwd, host, db)
         self.__engine = create_engine(theDB, pool_pre_ping=True)
 
         if getenv("HBNB_ENV") == "test":
