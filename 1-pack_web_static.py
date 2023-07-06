@@ -17,6 +17,6 @@ def do_pack():
     result = local("tar -cvzf {} ./web_static".format(archive))
 
     if result.return_code == 0:
-        return None
-
-    return archive
+        return archive
+    else:
+        return archive
