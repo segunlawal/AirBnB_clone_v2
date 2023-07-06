@@ -19,4 +19,4 @@ def do_pack():
     if result.return_code == 0:
         return archive
     else:
-        return archive
+        return None
