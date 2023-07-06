@@ -7,7 +7,7 @@ env.hosts = ['52.91.128.8', '100.24.240.21']
 env.user = "ubuntu"
 
 
-def do_pack():
+def do_deploy(archive_path):
     """Fabric script that distributes to web servers"""
     if not os.path.exists("archive_path"):
         return False
