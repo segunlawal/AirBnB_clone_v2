@@ -9,14 +9,14 @@ def do_pack():
     """Fabric script that generates a .tgz archive from the
     contents of the web_static folder"""
     if not os.path.exists("versions"):
-        local("versions")
+        local("mkdir versions")
 
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     archive = "versions/web_static_{}.tgz".format(timestamp)
 
     result = local("tar -cvzf {} ./web_static".format(archive))
 
-    if result.failed:
+    if result.return_code == 0:
         return None
 
     return archive
