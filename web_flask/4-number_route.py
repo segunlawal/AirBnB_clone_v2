@@ -27,7 +27,7 @@ def display_python(text='cool'):
     return "Python {}".format(text.replace("_", " "))
 
 @app.route('/number/<n>', strict_slashes=False)
-def display_python(n):
+def display_number(n):
     """Returns a string"""
     if isinstance(n, int):
         return "{} is a number".format(n)
