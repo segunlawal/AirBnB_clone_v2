@@ -23,9 +23,9 @@ def display_c(text):
     """Returns a string"""
     return "C {}".format(text.replace("_", " "))
 
-
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def display_python(text='cool'):
+def display_python(text='is cool'):
     """Returns a string"""
     return "Python {}".format(text.replace("_", " "))
 
