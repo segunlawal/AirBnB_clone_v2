@@ -15,7 +15,7 @@ def hello():
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """Returns a string"""
-    return "HBNB!"
+    return "HBNB"
 
 
 @app.route('/c/<text>', strict_slashes=False)
@@ -25,7 +25,7 @@ def display_c(text):
 
 
 @app.route('/python/<text>', strict_slashes=False)
-def display_python(text='cool'):
+def display_python(text='is cool'):
     """Returns a string"""
     return "Python {}".format(text.replace("_", " "))
 
