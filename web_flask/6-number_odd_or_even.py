@@ -47,12 +47,12 @@ def display_number_html(n):
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def display_number_odd_or_even(n):
     """Returns HTML page"""
-    if n % 2 == 0:
-        parity = "even"
+    if isinstance(n, int):
+        if n % 2 == 0:
+            parity = "even"
     else:
         parity = "odd"
-    if isinstance(n, int):
-        return render_template('6-number.html', n=n, parity=parity)
+    return render_template('6-number.html', n=n, parity=parity)
 
 
 if __name__ == '__main__':
