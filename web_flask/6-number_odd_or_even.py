@@ -51,9 +51,9 @@ def display_number_odd_or_even(n):
     if isinstance(n, int):
         if n % 2 == 0:
             parity = "even"
-    else:
-        parity = "odd"
-    return render_template('6-number.html', n=n, parity=parity)
+        else:
+            parity = "odd"
+        return render_template('6-number.html', n=n, parity=parity)
 
 
 if __name__ == '__main__':
